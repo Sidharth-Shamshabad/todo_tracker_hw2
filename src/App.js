@@ -102,7 +102,6 @@ class App extends Component {
     }
 
     this.state.toDoLists.splice(indexOfList, 1)
-    // this.state.currentList = null
 
     this.setState({
       toDoLists: [...this.state.toDoLists],
@@ -111,9 +110,6 @@ class App extends Component {
       nextListItemId: highListItemId + 1,
       useVerboseFeedback: true,
     })
-    // this.view.clearItemsList()
-    // this.view.refreshLists(this.toDoLists)
-    // console.log(this.state.toDoLists[0])
   }
 
   makeNewToDoList = () => {

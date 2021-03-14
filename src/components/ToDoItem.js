@@ -17,40 +17,38 @@ class ToDoItem extends Component {
     console.log('\t\t\tToDoItem ' + this.props.toDoListItem.id + ' did mount')
   }
 
-  onDescriptionClick = (e, listItem) => {
-    // let parentDiv = e.target.parentElement
-    // let divChild = parentDiv.removeChild(parentDiv.firstChild)
-    // let inputElement = document.createElement('input')
-    // inputElement.focus()
-    // inputElement.setAttribute('type', 'text')
-    // inputElement.setAttribute('value', divChild.textContent)
-    // inputElement.setAttribute('class', 'task-col-input')
-    // parentDiv.insertBefore(inputElement, parentDiv.firstChild)
-    // inputElement.addEventListener('focusout', function () {
-    //   if (inputElement.value != divChild.textContent) {
-    //     // thisController.model.changeItemDescriptionTransaction(
-    //     //   listItem,
-    //     //   inputElement.value
-    //     // )
-    //     divChild.textContent = listItem.description
-    //   }
-    //   inputElement.replaceWith(divChild)
-    // })
+  onDescriptionClick = (e) => {
+    let listItem = this.props.toDoListItem
+    let parentDiv = e.target.parentElement
+    let divChild = parentDiv.removeChild(parentDiv.firstChild)
+    let inputElement = document.createElement('input')
+    inputElement.focus()
+    inputElement.setAttribute('type', 'text')
+    inputElement.setAttribute('value', divChild.textContent)
+    inputElement.setAttribute('class', 'task-col-input')
+    parentDiv.insertBefore(inputElement, parentDiv.firstChild)
+    inputElement.addEventListener('focusout', function () {
+      if (inputElement.value != divChild.textContent) {
+        // thisController.model.changeItemDescriptionTransaction(
+        //   listItem,
+        //   inputElement.value
+        // )
+        listItem.description = inputElement.value
+        divChild.textContent = listItem.description
+      }
+      inputElement.replaceWith(divChild)
+    })
   }
 
   render() {
     // DISPLAY WHERE WE ARE
-    console.log(this.props.toDoListItem)
     let listItem = this.props.toDoListItem
     let statusType = 'status-complete'
     if (listItem.status === 'incomplete') statusType = 'status-incomplete'
 
     return (
       <div id={'todo-list-item-' + listItem.id} className='list-item-card'>
-        <div
-          className='item-col task-col'
-          onClick={this.onDescriptionClick(listItem)}
-        >
+        <div className='item-col task-col' onClick={this.onDescriptionClick}>
           {listItem.description}
         </div>
         <div className='item-col due-date-col'>{listItem.due_date}</div>

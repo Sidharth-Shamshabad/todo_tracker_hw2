@@ -23,7 +23,6 @@ class Workspace extends Component {
       if (event.target == modal_overlay) {
         modal_overlay.style.display = 'none'
         modal.style.display = 'none'
-        // controls.style.display = 'initial'
       }
     }
 
@@ -31,20 +30,12 @@ class Workspace extends Component {
     confirm_button.onclick = function () {
       modal_overlay.style.display = 'none'
       modal.style.display = 'none'
-      //   controls.style.display = 'none'
-      // console.log(props)
-      // this.props.removeCurrentList()
-
-      // let listsElement = document.getElementById('todo-lists-list')
-      // listsElement.firstChild.setAttribute('class', 'list-sidebar-card')
-      // console.log(listsElement)
     }
 
     var cancel_button = document.getElementById('cancel-button')
     cancel_button.onclick = function () {
       modal_overlay.style.display = 'none'
       modal.style.display = 'none'
-      //   controls.style.display = 'initial'
     }
   }
 
