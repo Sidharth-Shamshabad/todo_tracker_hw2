@@ -43,7 +43,7 @@ class ToDoItem extends Component {
   onDueDateChange = (e) => {
     let listItem = this.props.toDoListItem
     let parentDiv = e.target.parentElement
-    let divChild = parentDiv.removeChild(parentDiv.firstChild.nextSibling)
+    let divChild = parentDiv.firstChild.nextSibling
 
     let inputElement = document.createElement('input')
     inputElement.setAttribute('type', 'date')
@@ -65,6 +65,49 @@ class ToDoItem extends Component {
     })
   }
 
+  onStatusChange = (e) => {
+    let listItem = this.props.toDoListItem
+    let parentDiv = e.target.parentElement
+    let divChild = parentDiv.firstChild.nextSibling.nextSibling
+    let currentStatus = listItem.status
+    let optionElement = document.createElement('select')
+    optionElement.setAttribute('id', 'optionID')
+    optionElement.setAttribute('class', 'status-col-select')
+    let option1 = document.createElement('option')
+    option1.setAttribute('value', 'complete')
+    option1.innerHTML = 'complete'
+    option1.addEventListener('click', function (params) {
+      currentStatus = params.target.value
+    })
+    let option2 = document.createElement('option')
+    option2.setAttribute('value', 'incomplete')
+    option2.innerHTML = 'incomplete'
+    option2.addEventListener('click', function (params) {
+      currentStatus = params.target.value
+    })
+    if (currentStatus == option1.innerHTML) {
+      optionElement.appendChild(option1)
+      optionElement.appendChild(option2)
+    } else {
+      optionElement.appendChild(option2)
+      optionElement.appendChild(option1)
+    }
+    parentDiv.firstChild.nextSibling.nextSibling.replaceWith(optionElement)
+
+    optionElement.addEventListener('focusout', function (event) {
+      if (currentStatus != listItem.status) {
+        // thisController.model.ChangeItemStatusTransaction(
+        //   listItem,
+        //   currentStatus
+        // )
+        listItem.status = optionElement.value
+        divChild.textContent = listItem.status
+        divChild.className = 'status-' + optionElement.value
+      }
+      optionElement.replaceWith(divChild)
+    })
+  }
+
   render() {
     // DISPLAY WHERE WE ARE
     let listItem = this.props.toDoListItem
@@ -79,7 +122,11 @@ class ToDoItem extends Component {
         <div className='item-col due-date-col' onClick={this.onDueDateChange}>
           {listItem.due_date}
         </div>
-        <div className='item-col status-col' className={statusType}>
+        <div
+          className='item-col status-col'
+          className={statusType}
+          onClick={this.onStatusChange}
+        >
           {listItem.status}
         </div>
         <div className='item-col test-4-col'></div>
