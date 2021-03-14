@@ -40,6 +40,31 @@ class ToDoItem extends Component {
     })
   }
 
+  onDueDateChange = (e) => {
+    let listItem = this.props.toDoListItem
+    let parentDiv = e.target.parentElement
+    let divChild = parentDiv.removeChild(parentDiv.firstChild.nextSibling)
+
+    let inputElement = document.createElement('input')
+    inputElement.setAttribute('type', 'date')
+    inputElement.setAttribute('value', listItem.dueDate)
+    inputElement.setAttribute('class', 'due-date-col-input')
+
+    parentDiv.firstChild.nextSibling.replaceWith(inputElement)
+
+    inputElement.addEventListener('focusout', function () {
+      if (inputElement.value != listItem.dueDate) {
+        // thisController.model.ChangeItemDueDateTransaction(
+        //   listItem,
+        //   inputElement.value
+        // )
+        listItem.dueDate = inputElement.value
+        divChild.textContent = listItem.dueDate
+      }
+      inputElement.replaceWith(divChild)
+    })
+  }
+
   render() {
     // DISPLAY WHERE WE ARE
     let listItem = this.props.toDoListItem
@@ -51,7 +76,9 @@ class ToDoItem extends Component {
         <div className='item-col task-col' onClick={this.onDescriptionClick}>
           {listItem.description}
         </div>
-        <div className='item-col due-date-col'>{listItem.due_date}</div>
+        <div className='item-col due-date-col' onClick={this.onDueDateChange}>
+          {listItem.due_date}
+        </div>
         <div className='item-col status-col' className={statusType}>
           {listItem.status}
         </div>
