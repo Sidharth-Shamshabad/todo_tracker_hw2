@@ -138,7 +138,14 @@ class ToDoItem extends Component {
   }
 
   onRemoveClick = (e) => {
-    console.log(e)
+    let listItem = this.props.toDoListItem
+    for (let i = 0; i < this.props.toDoList.length; i++) {
+      const element = this.props.toDoList[i]
+      if (element.id === listItem.id) {
+        this.props.toDoList.splice(i, 1)
+      }
+      break
+    }
   }
 
   render() {
