@@ -39,7 +39,15 @@ class Workspace extends Component {
     }
   }
 
+  onAddBox = (e) => {
+    let element = this.props.makeNewToDoListItem()
+    console.log(this.props.toDoListItems)
+    this.props.toDoListItems.push(element)
+    this.props.updateCurrentList(this.props.toDoListItems)
+  }
+
   render() {
+    console.log(this.props.toDoListItems)
     return (
       <div id='workspace'>
         <div id='todo-list-header-card' className='list-item-card'>
@@ -69,6 +77,7 @@ class Workspace extends Component {
             <AddBox
               id='add-item-button'
               className='list-item-control material-icons todo-button'
+              onClick={this.onAddBox}
             />
             <Delete
               id='delete-list-button'
@@ -87,6 +96,7 @@ class Workspace extends Component {
               key={toDoListItem.id}
               toDoListItem={toDoListItem} // PASS THE ITEM TO THE CHILDREN
               toDoList={this.props.toDoListItems}
+              updateCurrentList={this.props.updateCurrentList}
             />
           ))}
         </div>

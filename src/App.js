@@ -74,6 +74,16 @@ class App extends Component {
     })
   }
 
+  updateCurrentList = (newList) => {
+    this.setState({
+      todoLists: [...this.state.toDoLists],
+      // currentList: [...this.state.currentList],
+      // currentList: newList,
+      useVerboseFeedback: true,
+    })
+    return newList
+  }
+
   addNewList = () => {
     let newToDoListInList = [this.makeNewToDoList()]
     let newToDoListsList = [...newToDoListInList, ...this.state.toDoLists]
@@ -92,8 +102,6 @@ class App extends Component {
 
   removeCurrentList = () => {
     console.log(this.state)
-    let highListId = -1
-    let highListItemId = -1
     let indexOfList = -1
     for (let i = 0; i < this.state.toDoLists.length && indexOfList < 0; i++) {
       if (this.state.toDoLists[i].id === this.state.currentList.id) {
@@ -106,8 +114,8 @@ class App extends Component {
     this.setState({
       toDoLists: [...this.state.toDoLists],
       currentList: { items: [] },
-      nextListId: highListId + 1,
-      nextListItemId: highListItemId + 1,
+      // nextListId: highListId + 1,
+      // nextListItemId: highListItemId + 1,
       useVerboseFeedback: true,
     })
   }
@@ -126,7 +134,11 @@ class App extends Component {
       description: 'No Description',
       dueDate: 'none',
       status: 'incomplete',
+      id: this.state.nextListItemId,
     }
+    this.setState({
+      nextListItemId: this.state.nextListItemId + 1,
+    })
     return newToDoListItem
   }
 
@@ -141,7 +153,6 @@ class App extends Component {
 
   render() {
     let items = this.state.currentList.items
-    console.log(items)
     return (
       <div id='root'>
         <Navbar />
@@ -153,6 +164,8 @@ class App extends Component {
         <Workspace
           toDoListItems={items}
           removeCurrentList={this.removeCurrentList}
+          makeNewToDoListItem={this.makeNewToDoListItem}
+          updateCurrentList={this.updateCurrentList}
         />
         <Modal removeCurrentList={this.removeCurrentList} />
       </div>

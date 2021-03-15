@@ -9,12 +9,12 @@ class ToDoItem extends Component {
     super(props)
 
     // DISPLAY WHERE WE ARE
-    console.log('\t\t\tToDoItem ' + this.props.toDoListItem.id + ' constructor')
+    // console.log('\t\t\tToDoItem ' + this.props.toDoListItem.id + ' constructor')
   }
 
   componentDidMount = () => {
     // DISPLAY WHERE WE ARE
-    console.log('\t\t\tToDoItem ' + this.props.toDoListItem.id + ' did mount')
+    // console.log('\t\t\tToDoItem ' + this.props.toDoListItem.id + ' did mount')
   }
 
   onDescriptionClick = (e) => {
@@ -110,42 +110,47 @@ class ToDoItem extends Component {
 
   onArrowUpClick = (e) => {
     let listItem = this.props.toDoListItem
+    let newList = this.props.toDoList
 
-    for (let i = 0; i < this.props.toDoList.length; i++) {
-      const element = this.props.toDoList[i]
+    for (let i = 0; i < newList.length; i++) {
+      const element = newList[i]
       if (element.id === listItem.id && i !== 0) {
-        console.log('item matched', element.id, listItem.id)
         let temp = element
-        this.props.toDoList[i] = this.props.toDoList[i - 1]
-        this.props.toDoList[i - 1] = temp
+        newList[i] = newList[i - 1]
+        newList[i - 1] = temp
       }
     }
+    this.props.updateCurrentList(newList)
   }
 
   onArrowDownClick = (e) => {
     let listItem = this.props.toDoListItem
+    let newList = this.props.toDoList
 
-    for (let i = 0; i < this.props.toDoList.length; i++) {
-      const element = this.props.toDoList[i]
-      if (element.id === listItem.id && i !== this.props.toDoList.length) {
-        console.log('item matched', element.id, listItem.id)
+    for (let i = 0; i < newList.length; i++) {
+      const element = newList[i]
+      if (element.id === listItem.id && i !== newList.length) {
         let temp = element
-        this.props.toDoList[i] = this.props.toDoList[i + 1]
-        this.props.toDoList[i + 1] = temp
+        newList[i] = newList[i + 1]
+        newList[i + 1] = temp
         break
       }
     }
+    this.props.updateCurrentList(newList)
   }
 
   onRemoveClick = (e) => {
     let listItem = this.props.toDoListItem
-    for (let i = 0; i < this.props.toDoList.length; i++) {
-      const element = this.props.toDoList[i]
+    let newList = this.props.toDoList
+
+    for (let i = 0; i < newList.length; i++) {
+      const element = newList[i]
       if (element.id === listItem.id) {
-        this.props.toDoList.splice(i, 1)
+        newList.splice(i, 1)
+        break
       }
-      break
     }
+    this.props.updateCurrentList(newList)
   }
 
   render() {
