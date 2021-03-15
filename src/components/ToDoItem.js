@@ -108,6 +108,39 @@ class ToDoItem extends Component {
     })
   }
 
+  onArrowUpClick = (e) => {
+    let listItem = this.props.toDoListItem
+
+    for (let i = 0; i < this.props.toDoList.length; i++) {
+      const element = this.props.toDoList[i]
+      if (element.id === listItem.id && i !== 0) {
+        console.log('item matched', element.id, listItem.id)
+        let temp = element
+        this.props.toDoList[i] = this.props.toDoList[i - 1]
+        this.props.toDoList[i - 1] = temp
+      }
+    }
+  }
+
+  onArrowDownClick = (e) => {
+    let listItem = this.props.toDoListItem
+
+    for (let i = 0; i < this.props.toDoList.length; i++) {
+      const element = this.props.toDoList[i]
+      if (element.id === listItem.id && i !== this.props.toDoList.length) {
+        console.log('item matched', element.id, listItem.id)
+        let temp = element
+        this.props.toDoList[i] = this.props.toDoList[i + 1]
+        this.props.toDoList[i + 1] = temp
+        break
+      }
+    }
+  }
+
+  onRemoveClick = (e) => {
+    console.log(e)
+  }
+
   render() {
     // DISPLAY WHERE WE ARE
     let listItem = this.props.toDoListItem
@@ -131,9 +164,18 @@ class ToDoItem extends Component {
         </div>
         <div className='item-col test-4-col'></div>
         <div className='item-col list-controls-col'>
-          <KeyboardArrowUp className='list-item-control todo-button' />
-          <KeyboardArrowDown className='list-item-control todo-button' />
-          <Close className='list-item-control todo-button' />
+          <KeyboardArrowUp
+            className='list-item-control todo-button'
+            onClick={this.onArrowUpClick}
+          />
+          <KeyboardArrowDown
+            className='list-item-control todo-button'
+            onClick={this.onArrowDownClick}
+          />
+          <Close
+            className='list-item-control todo-button'
+            onClick={this.onRemoveClick}
+          />
           <div className='list-item-control'></div>
           <div className='list-item-control'></div>
         </div>
