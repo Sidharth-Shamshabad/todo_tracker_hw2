@@ -58,6 +58,20 @@ class App extends Component {
     }
   }
 
+  redo() {
+    console.log(this.tps.hasTransactionToRedo())
+    if (this.tps.hasTransactionToRedo()) {
+      this.tps.doTransaction()
+    }
+  }
+
+  undo() {
+    console.log(this.tps.hasTransactionToUndo())
+    if (this.tps.hasTransactionToUndo()) {
+      this.tps.undoTransaction()
+    }
+  }
+
   // WILL LOAD THE SELECTED LIST
   loadToDoList = (toDoList) => {
     console.log('loading ' + toDoList)
@@ -151,6 +165,18 @@ class App extends Component {
     localStorage.setItem('recent_work', toDoListsString)
   }
 
+  updateDescription = (new_desc, id) => {
+    console.log(this.state.currentList.items)
+    for (let i = 0; i < this.state.currentList.items.length; i++) {
+      const element = this.state.currentList.items[i]
+      if (element.id === id) {
+        element.description = new_desc
+        this.updateCurrentList(this.state.toDoLists)
+        break
+      }
+    }
+  }
+
   render() {
     let items = this.state.currentList.items
     return (
@@ -166,6 +192,10 @@ class App extends Component {
           removeCurrentList={this.removeCurrentList}
           makeNewToDoListItem={this.makeNewToDoListItem}
           updateCurrentList={this.updateCurrentList}
+          undo={this.undo}
+          redo={this.redo}
+          tps={this.tps}
+          app={this}
         />
         <Modal removeCurrentList={this.removeCurrentList} />
       </div>

@@ -46,8 +46,16 @@ class Workspace extends Component {
     this.props.updateCurrentList(this.props.toDoListItems)
   }
 
+  onUndo = () => {
+    this.props.undo()
+  }
+
+  onRedo = (e) => {
+    this.props.redo()
+  }
+
   render() {
-    console.log(this.props.toDoListItems)
+    console.log(this.props.app)
     return (
       <div id='workspace'>
         <div id='todo-list-header-card' className='list-item-card'>
@@ -69,10 +77,12 @@ class Workspace extends Component {
             <Undo
               id='undo-button'
               className='list-item-control material-icons todo-button'
+              onClick={this.onUndo}
             />
             <Redo
               id='redo-button'
               className='list-item-control material-icons todo-button'
+              onClick={this.onRedo}
             />
             <AddBox
               id='add-item-button'
@@ -97,6 +107,10 @@ class Workspace extends Component {
               toDoListItem={toDoListItem} // PASS THE ITEM TO THE CHILDREN
               toDoList={this.props.toDoListItems}
               updateCurrentList={this.props.updateCurrentList}
+              undo={this.props.undo}
+              redo={this.props.redo}
+              tps={this.props.tps}
+              app={this.props.app}
             />
           ))}
         </div>

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp'
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 import Close from '@material-ui/icons/Close'
+import ChangeItemDescription_Transaction from './transactions/ChangeItemDescription_Transaction'
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -27,14 +28,19 @@ class ToDoItem extends Component {
     inputElement.setAttribute('value', divChild.textContent)
     inputElement.setAttribute('class', 'task-col-input')
     parentDiv.insertBefore(inputElement, parentDiv.firstChild)
+    let tps = this.props.tps
+    let app = this.props.app
+
     inputElement.addEventListener('focusout', function () {
       if (inputElement.value != divChild.textContent) {
-        // thisController.model.changeItemDescriptionTransaction(
-        //   listItem,
-        //   inputElement.value
-        // )
-        listItem.description = inputElement.value
-        divChild.textContent = listItem.description
+        // listItem.description = inputElement.value
+        // divChild.textContent = listItem.description
+        let transaction = new ChangeItemDescription_Transaction(
+          app,
+          listItem,
+          inputElement.value
+        )
+        tps.addTransaction(transaction)
       }
       inputElement.replaceWith(divChild)
     })
