@@ -200,6 +200,32 @@ class App extends Component {
     }
   }
 
+  updateUpArrow = (id) => {
+    for (let i = 0; i < this.state.currentList.items.length; i++) {
+      const element = this.state.currentList.items[i]
+      if (element.id === id && i !== 0) {
+        let temp = element
+        this.state.currentList.items[i] = this.state.currentList.items[i - 1]
+        this.state.currentList.items[i - 1] = temp
+        this.updateCurrentList(this.state.toDoLists)
+        break
+      }
+    }
+  }
+
+  updateDownArrow = (id) => {
+    for (let i = 0; i < this.state.currentList.items.length; i++) {
+      const element = this.state.currentList.items[i]
+      if (element.id === id && i !== this.state.currentList.items.length) {
+        let temp = element
+        this.state.currentList.items[i] = this.state.currentList.items[i + 1]
+        this.state.currentList.items[i + 1] = temp
+        this.updateCurrentList(this.state.toDoLists)
+        break
+      }
+    }
+  }
+
   render() {
     let items = this.state.currentList.items
     return (

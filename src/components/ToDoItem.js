@@ -6,6 +6,8 @@ import Close from '@material-ui/icons/Close'
 import ChangeItemDescription_Transaction from './transactions/ChangeItemDescription_Transaction'
 import ChangeItemDueDate_Transaction from './transactions/ChangeItemDueDate_Transaction'
 import ChangeItemStatus_Transaction from './transactions/ChangeItemStatus_Transaction'
+import UpdateUpArrow_Transaction from './transactions/UpdateUpArrow_Transaction'
+import UpdateDownArrow_Transaction from './transactions/UpdateDownArrow_Transaction'
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -108,8 +110,6 @@ class ToDoItem extends Component {
 
     optionElement.addEventListener('focusout', function (event) {
       if (currentStatus != listItem.status) {
-        // listItem.status = optionElement.value
-        // divChild.textContent = listItem.status
         let transaction = new ChangeItemStatus_Transaction(
           app,
           listItem,
@@ -124,33 +124,44 @@ class ToDoItem extends Component {
 
   onArrowUpClick = (e) => {
     let listItem = this.props.toDoListItem
-    let newList = this.props.toDoList
 
-    for (let i = 0; i < newList.length; i++) {
-      const element = newList[i]
-      if (element.id === listItem.id && i !== 0) {
-        let temp = element
-        newList[i] = newList[i - 1]
-        newList[i - 1] = temp
-      }
+    let tps = this.props.tps
+    let app = this.props.app
+
+    if (this.props.toDoList[0] === listItem) {
+      return
+    } else {
+      let transaction = new UpdateUpArrow_Transaction(app, listItem)
+      tps.addTransaction(transaction)
     }
-    this.props.updateCurrentList(newList)
   }
 
   onArrowDownClick = (e) => {
-    let listItem = this.props.toDoListItem
-    let newList = this.props.toDoList
+    // let listItem = this.props.toDoListItem
+    // let newList = this.props.toDoList
 
-    for (let i = 0; i < newList.length; i++) {
-      const element = newList[i]
-      if (element.id === listItem.id && i !== newList.length) {
-        let temp = element
-        newList[i] = newList[i + 1]
-        newList[i + 1] = temp
-        break
-      }
+    // for (let i = 0; i < newList.length; i++) {
+    //   const element = newList[i]
+    //   if (element.id === listItem.id && i !== newList.length) {
+    //     let temp = element
+    //     newList[i] = newList[i + 1]
+    //     newList[i + 1] = temp
+    //     break
+    //   }
+    // }
+    // this.props.updateCurrentList(newList)
+
+    let listItem = this.props.toDoListItem
+
+    let tps = this.props.tps
+    let app = this.props.app
+
+    if (this.props.toDoList[this.props.toDoList.length - 1] === listItem) {
+      return
+    } else {
+      let transaction = new UpdateDownArrow_Transaction(app, listItem)
+      tps.addTransaction(transaction)
     }
-    this.props.updateCurrentList(newList)
   }
 
   onRemoveClick = (e) => {
