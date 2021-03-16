@@ -178,11 +178,22 @@ class App extends Component {
   }
 
   updateDueDate = (new_date, id) => {
-    console.log(new_date)
     for (let i = 0; i < this.state.currentList.items.length; i++) {
       const element = this.state.currentList.items[i]
       if (element.id === id) {
         element.due_date = new_date
+        this.updateCurrentList(this.state.toDoLists)
+        break
+      }
+    }
+  }
+
+  updateStatus = (new_status, id) => {
+    for (let i = 0; i < this.state.currentList.items.length; i++) {
+      const element = this.state.currentList.items[i]
+      console.log(element)
+      if (element.id === id) {
+        element.status = new_status
         this.updateCurrentList(this.state.toDoLists)
         break
       }

@@ -5,6 +5,7 @@ import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 import Close from '@material-ui/icons/Close'
 import ChangeItemDescription_Transaction from './transactions/ChangeItemDescription_Transaction'
 import ChangeItemDueDate_Transaction from './transactions/ChangeItemDueDate_Transaction'
+import ChangeItemStatus_Transaction from './transactions/ChangeItemStatus_Transaction'
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -102,14 +103,19 @@ class ToDoItem extends Component {
     }
     parentDiv.firstChild.nextSibling.nextSibling.replaceWith(optionElement)
 
+    let tps = this.props.tps
+    let app = this.props.app
+
     optionElement.addEventListener('focusout', function (event) {
       if (currentStatus != listItem.status) {
-        // thisController.model.ChangeItemStatusTransaction(
-        //   listItem,
-        //   currentStatus
-        // )
-        listItem.status = optionElement.value
-        divChild.textContent = listItem.status
+        // listItem.status = optionElement.value
+        // divChild.textContent = listItem.status
+        let transaction = new ChangeItemStatus_Transaction(
+          app,
+          listItem,
+          optionElement.value
+        )
+        tps.addTransaction(transaction)
         divChild.className = 'status-' + optionElement.value
       }
       optionElement.replaceWith(divChild)
