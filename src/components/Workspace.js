@@ -55,7 +55,6 @@ class Workspace extends Component {
   }
 
   render() {
-    console.log(this.props.app)
     return (
       <div id='workspace'>
         <div id='todo-list-header-card' className='list-item-card'>

@@ -4,6 +4,7 @@ import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp'
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 import Close from '@material-ui/icons/Close'
 import ChangeItemDescription_Transaction from './transactions/ChangeItemDescription_Transaction'
+import ChangeItemDueDate_Transaction from './transactions/ChangeItemDueDate_Transaction'
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -33,8 +34,6 @@ class ToDoItem extends Component {
 
     inputElement.addEventListener('focusout', function () {
       if (inputElement.value != divChild.textContent) {
-        // listItem.description = inputElement.value
-        // divChild.textContent = listItem.description
         let transaction = new ChangeItemDescription_Transaction(
           app,
           listItem,
@@ -58,14 +57,17 @@ class ToDoItem extends Component {
 
     parentDiv.firstChild.nextSibling.replaceWith(inputElement)
 
+    let tps = this.props.tps
+    let app = this.props.app
+
     inputElement.addEventListener('focusout', function () {
       if (inputElement.value != listItem.dueDate) {
-        // thisController.model.ChangeItemDueDateTransaction(
-        //   listItem,
-        //   inputElement.value
-        // )
-        listItem.dueDate = inputElement.value
-        divChild.textContent = listItem.dueDate
+        let transaction = new ChangeItemDueDate_Transaction(
+          app,
+          listItem,
+          inputElement.value
+        )
+        tps.addTransaction(transaction)
       }
       inputElement.replaceWith(divChild)
     })
