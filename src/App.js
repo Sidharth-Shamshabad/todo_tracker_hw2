@@ -143,10 +143,14 @@ class App extends Component {
     return newToDoList
   }
 
+  newDate = () => {
+    return new Date().toUTCString()
+  }
+
   makeNewToDoListItem = () => {
     let newToDoListItem = {
       description: 'No Description',
-      dueDate: 'none',
+      dueDate: 'No Date',
       status: 'incomplete',
       id: this.state.nextListItemId,
     }
@@ -240,6 +244,13 @@ class App extends Component {
   addDeletedItem = (item, index) => {
     this.state.currentList.items.splice(index, 0, item)
     this.updateCurrentList(this.state.toDoLists)
+  }
+
+  addNewItem = () => {
+    let element = this.makeNewToDoListItem()
+    this.state.currentList.items.push(element)
+    this.updateCurrentList(this.props.toDoListItems)
+    return element
   }
 
   render() {

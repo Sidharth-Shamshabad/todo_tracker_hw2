@@ -6,6 +6,7 @@ import Redo from '@material-ui/icons/Redo'
 import AddBox from '@material-ui/icons/AddBox'
 import Delete from '@material-ui/icons/Delete'
 import Close from '@material-ui/icons/Close'
+import AddNewItem_Transaction from './transactions/AddNewItem_Transaction'
 
 class Workspace extends Component {
   constructor(props) {
@@ -40,10 +41,15 @@ class Workspace extends Component {
   }
 
   onAddBox = (e) => {
-    let element = this.props.makeNewToDoListItem()
-    console.log(this.props.toDoListItems)
-    this.props.toDoListItems.push(element)
-    this.props.updateCurrentList(this.props.toDoListItems)
+    // let element = this.props.makeNewToDoListItem()
+    // this.props.toDoListItems.push(element)
+    // this.props.updateCurrentList(this.props.toDoListItems)
+
+    let tps = this.props.tps
+    let app = this.props.app
+
+    let transaction = new AddNewItem_Transaction(app)
+    tps.addTransaction(transaction)
   }
 
   onUndo = () => {

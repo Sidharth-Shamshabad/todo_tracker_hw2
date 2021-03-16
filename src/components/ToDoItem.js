@@ -153,19 +153,9 @@ class ToDoItem extends Component {
 
   onRemoveClick = (e) => {
     let listItem = this.props.toDoListItem
-    let newList = this.props.toDoList
 
     let tps = this.props.tps
     let app = this.props.app
-
-    // for (let i = 0; i < newList.length; i++) {
-    //   const element = newList[i]
-    //   if (element.id === listItem.id) {
-    //     newList.splice(i, 1)
-    //     break
-    //   }
-    // }
-    // this.props.updateCurrentList(newList)
 
     let transaction = new RemoveItem_Transaction(app, listItem)
     tps.addTransaction(transaction)
