@@ -226,6 +226,22 @@ class App extends Component {
     }
   }
 
+  updateDeleteButton = (id) => {
+    for (let i = 0; i < this.state.currentList.items.length; i++) {
+      const element = this.state.currentList.items[i]
+      if (element.id === id) {
+        this.state.currentList.items.splice(i, 1)
+        this.updateCurrentList(this.state.toDoLists)
+        return i
+      }
+    }
+  }
+
+  addDeletedItem = (item, index) => {
+    this.state.currentList.items.splice(index, 0, item)
+    this.updateCurrentList(this.state.toDoLists)
+  }
+
   render() {
     let items = this.state.currentList.items
     return (

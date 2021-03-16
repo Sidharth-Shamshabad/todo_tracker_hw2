@@ -8,6 +8,7 @@ import ChangeItemDueDate_Transaction from './transactions/ChangeItemDueDate_Tran
 import ChangeItemStatus_Transaction from './transactions/ChangeItemStatus_Transaction'
 import UpdateUpArrow_Transaction from './transactions/UpdateUpArrow_Transaction'
 import UpdateDownArrow_Transaction from './transactions/UpdateDownArrow_Transaction'
+import RemoveItem_Transaction from './transactions/RemoveItem_Transaction'
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -137,20 +138,6 @@ class ToDoItem extends Component {
   }
 
   onArrowDownClick = (e) => {
-    // let listItem = this.props.toDoListItem
-    // let newList = this.props.toDoList
-
-    // for (let i = 0; i < newList.length; i++) {
-    //   const element = newList[i]
-    //   if (element.id === listItem.id && i !== newList.length) {
-    //     let temp = element
-    //     newList[i] = newList[i + 1]
-    //     newList[i + 1] = temp
-    //     break
-    //   }
-    // }
-    // this.props.updateCurrentList(newList)
-
     let listItem = this.props.toDoListItem
 
     let tps = this.props.tps
@@ -168,14 +155,20 @@ class ToDoItem extends Component {
     let listItem = this.props.toDoListItem
     let newList = this.props.toDoList
 
-    for (let i = 0; i < newList.length; i++) {
-      const element = newList[i]
-      if (element.id === listItem.id) {
-        newList.splice(i, 1)
-        break
-      }
-    }
-    this.props.updateCurrentList(newList)
+    let tps = this.props.tps
+    let app = this.props.app
+
+    // for (let i = 0; i < newList.length; i++) {
+    //   const element = newList[i]
+    //   if (element.id === listItem.id) {
+    //     newList.splice(i, 1)
+    //     break
+    //   }
+    // }
+    // this.props.updateCurrentList(newList)
+
+    let transaction = new RemoveItem_Transaction(app, listItem)
+    tps.addTransaction(transaction)
   }
 
   render() {
