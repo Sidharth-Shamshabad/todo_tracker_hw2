@@ -25,10 +25,10 @@ class ToDoItem extends Component {
 
   onDescriptionClick = (e) => {
     let add_button = document.getElementById('add-list-button')
-    console.log(add_button)
+    add_button.style.pointerEvents = 'none'
     add_button.style.cursor = 'not-allowed'
     add_button.style.hover = 'disabled'
-    add_button.style.color = 'darkgray'
+    add_button.style.color = 'gray'
 
     let listItem = this.props.toDoListItem
     let parentDiv = e.target.parentElement
@@ -55,10 +55,17 @@ class ToDoItem extends Component {
       add_button.style.cursor = 'pointer'
       add_button.style.hover = 'enabled'
       add_button.style.color = '#ffc819'
+      add_button.style.pointerEvents = 'visible'
     })
   }
 
   onDueDateChange = (e) => {
+    let add_button = document.getElementById('add-list-button')
+    add_button.style.pointerEvents = 'none'
+    add_button.style.cursor = 'not-allowed'
+    add_button.style.hover = 'disabled'
+    add_button.style.color = 'gray'
+
     let listItem = this.props.toDoListItem
     let parentDiv = e.target.parentElement
     let divChild = parentDiv.firstChild.nextSibling
@@ -83,10 +90,19 @@ class ToDoItem extends Component {
         tps.addTransaction(transaction)
       }
       inputElement.replaceWith(divChild)
+      add_button.style.cursor = 'pointer'
+      add_button.style.hover = 'enabled'
+      add_button.style.color = '#ffc819'
+      add_button.style.pointerEvents = 'visible'
     })
   }
 
   onStatusChange = (e) => {
+    let add_button = document.getElementById('add-list-button')
+    add_button.style.pointerEvents = 'none'
+    add_button.style.cursor = 'not-allowed'
+    add_button.style.hover = 'disabled'
+    add_button.style.color = 'gray'
     let listItem = this.props.toDoListItem
     let parentDiv = e.target.parentElement
     let divChild = parentDiv.firstChild.nextSibling.nextSibling
@@ -129,6 +145,10 @@ class ToDoItem extends Component {
         divChild.className = 'status-' + optionElement.value
       }
       optionElement.replaceWith(divChild)
+      add_button.style.cursor = 'pointer'
+      add_button.style.hover = 'enabled'
+      add_button.style.color = '#ffc819'
+      add_button.style.pointerEvents = 'visible'
     })
   }
 
@@ -176,6 +196,25 @@ class ToDoItem extends Component {
     let statusType = 'status-complete'
     if (listItem.status === 'incomplete') statusType = 'status-incomplete'
 
+    let upColorCheck =
+      this.props.toDoListItem === this.props.toDoList[0] ? 'gray' : 'white'
+    let upCursorCheck =
+      this.props.toDoListItem === this.props.toDoList[0]
+        ? 'not-allowed'
+        : 'pointer'
+
+    let downColorCheck =
+      this.props.toDoListItem ===
+      this.props.toDoList[this.props.toDoList.length - 1]
+        ? 'gray'
+        : 'white'
+
+    let downCursorCheck =
+      this.props.toDoListItem ===
+      this.props.toDoList[this.props.toDoList.length - 1]
+        ? 'not-allowed'
+        : 'pointer'
+
     return (
       <div id={'todo-list-item-' + listItem.id} className='list-item-card'>
         <div className='item-col task-col' onClick={this.onDescriptionClick}>
@@ -196,10 +235,18 @@ class ToDoItem extends Component {
           <KeyboardArrowUp
             className='list-item-control todo-button'
             onClick={this.onArrowUpClick}
+            style={{
+              color: upColorCheck,
+              cursor: upCursorCheck,
+            }}
           />
           <KeyboardArrowDown
             className='list-item-control todo-button'
             onClick={this.onArrowDownClick}
+            style={{
+              color: downColorCheck,
+              cursor: downCursorCheck,
+            }}
           />
           <Close
             className='list-item-control todo-button'

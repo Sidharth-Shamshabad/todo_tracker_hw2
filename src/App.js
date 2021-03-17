@@ -20,14 +20,12 @@ class App extends Component {
     super(props)
 
     // DISPLAY WHERE WE ARE
-    console.log('App constructor')
 
     // MAKE OUR TRANSACTION PROCESSING SYSTEM
     this.tps = new jsTPS()
 
     // CHECK TO SEE IF THERE IS DATA IN LOCAL STORAGE FOR THIS APP
     let recentLists = localStorage.getItem('recentLists')
-    console.log('recentLists: ' + recentLists)
     if (!recentLists) {
       recentLists = JSON.stringify(testData.toDoLists)
       localStorage.setItem('toDoLists', recentLists)
@@ -66,7 +64,6 @@ class App extends Component {
   }
 
   undo() {
-    console.log(this.tps.hasTransactionToUndo())
     if (this.tps.hasTransactionToUndo()) {
       this.tps.undoTransaction()
     }
@@ -128,7 +125,6 @@ class App extends Component {
     }
 
     this.state.toDoLists.splice(indexOfList, 1)
-
     this.setState(
       {
         toDoLists: [...this.state.toDoLists],
@@ -139,6 +135,18 @@ class App extends Component {
       },
       this.afterToDoListsChangeComplete
     )
+    this.tps.clearAllTransactions()
+    let controls = document.getElementById('list-controls-div')
+    controls.style.display = 'none'
+  }
+
+  removeSelectedList = () => {
+    this.setState({
+      toDoLists: [...this.state.toDoLists],
+      currentList: { items: [] },
+      useVerboseFeedback: true,
+    })
+    this.tps.clearAllTransactions()
   }
 
   makeNewToDoList = () => {
@@ -150,8 +158,26 @@ class App extends Component {
     return newToDoList
   }
 
-  newDate = () => {
-    return new Date().toUTCString()
+  checkUndoRedo = () => {
+    let undo_button = document.getElementById('undo-button')
+    if (this.mostRecentTransaction == -1) {
+      undo_button.style.cursor = 'not-allowed'
+      undo_button.style.hover = 'disabled'
+      undo_button.style.color = 'darkgray'
+    } else {
+      undo_button.style.cursor = 'pointer'
+      undo_button.style.color = 'white'
+    }
+
+    let redo_button = document.getElementById('redo-button')
+    if (this.mostRecentTransaction == this.numTransactions - 1) {
+      redo_button.style.cursor = 'not-allowed'
+      redo_button.style.hover = 'disabled'
+      redo_button.style.color = 'darkgray'
+    } else {
+      redo_button.style.cursor = 'pointer'
+      redo_button.style.color = 'white'
+    }
   }
 
   makeNewToDoListItem = () => {
@@ -268,6 +294,7 @@ class App extends Component {
           toDoLists={this.state.toDoLists}
           loadToDoListCallback={this.loadToDoList}
           addNewListCallback={this.addNewList}
+          tps={this.tps}
         />
         <Workspace
           toDoListItems={items}
@@ -278,6 +305,7 @@ class App extends Component {
           redo={this.redo}
           tps={this.tps}
           app={this}
+          checkUndoRedo={this.checkUndoRedo}
         />
         <Modal removeCurrentList={this.removeCurrentList} />
       </div>

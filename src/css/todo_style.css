@@ -210,3 +210,11 @@
   font-size: 12pt;
   cursor: pointer;
 }
+
+#undo-button:hover {
+  background-color: lightgray;
+}
+
+#redo-button:hover {
+  background-color: lightgray;
+}

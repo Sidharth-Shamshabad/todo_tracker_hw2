@@ -6,20 +6,22 @@ class ListLink extends Component {
     super(props)
 
     // DISPLAY WHERE WE ARE
-    console.log('\t\t\tListLink ' + this.props.toDoList.key + ' constructor')
   }
 
   componentDidMount = () => {
     // DISPLAY WHERE WE ARE
-    console.log('\t\t\tListLink ' + this.props.toDoList.key + ' did mount')
   }
 
   handleLoadList = () => {
+    let controls = document.getElementById('list-controls-div')
+    controls.style.display = 'initial'
+
+    this.props.tps.clearAllTransactions()
+
     this.props.loadToDoListCallback(this.props.toDoList)
   }
 
   handleDoubleClick = (e) => {
-    // console.log(this.props.toDoList)
     let list = this.props.toDoList
     let parentDiv = e.target.parentElement
     let divChild = parentDiv.removeChild(parentDiv.firstChild)
@@ -45,7 +47,6 @@ class ListLink extends Component {
 
   render() {
     // DISPLAY WHERE WE ARE
-    console.log('\t\t\tListLink render')
 
     return (
       <div

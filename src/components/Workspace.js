@@ -41,15 +41,17 @@ class Workspace extends Component {
   }
 
   onAddBox = (e) => {
-    // let element = this.props.makeNewToDoListItem()
-    // this.props.toDoListItems.push(element)
-    // this.props.updateCurrentList(this.props.toDoListItems)
-
     let tps = this.props.tps
     let app = this.props.app
 
     let transaction = new AddNewItem_Transaction(app)
     tps.addTransaction(transaction)
+  }
+
+  onCloseClick = (e) => {
+    this.props.app.removeSelectedList()
+    let controls = document.getElementById('list-controls-div')
+    controls.style.display = 'none'
   }
 
   onUndo = () => {
@@ -74,6 +76,7 @@ class Workspace extends Component {
             Status
           </div>
           <div
+            id='list-controls-div'
             className='item-col'
             display='flex'
             flexDirection='row'
@@ -83,11 +86,21 @@ class Workspace extends Component {
               id='undo-button'
               className='list-item-control material-icons todo-button'
               onClick={this.onUndo}
+              style={{
+                cursor: 'not-allowed',
+                hover: 'disabled',
+                color: 'gray',
+              }}
             />
             <Redo
               id='redo-button'
               className='list-item-control material-icons todo-button'
               onClick={this.onRedo}
+              style={{
+                cursor: 'not-allowed',
+                hover: 'disabled',
+                color: 'gray',
+              }}
             />
             <AddBox
               id='add-item-button'
@@ -102,6 +115,7 @@ class Workspace extends Component {
             <Close
               id='close-list-button'
               className='list-item-control material-icons todo-button'
+              onClick={this.onCloseClick}
             />
           </div>
         </div>
