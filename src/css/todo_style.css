@@ -99,6 +99,11 @@
   color: var(--swatch-accent);
 }
 
+#add-list-button:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
 .status-incomplete {
   color: var(--swatch-accent);
 }

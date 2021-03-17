@@ -74,27 +74,31 @@ class App extends Component {
 
   // WILL LOAD THE SELECTED LIST
   loadToDoList = (toDoList) => {
-    console.log('loading ' + toDoList)
-
     // MAKE SURE toDoList IS AT THE TOP OF THE STACK BY REMOVING THEN PREPENDING
     const nextLists = this.state.toDoLists.filter(
       (testList) => testList.id !== toDoList.id
     )
     nextLists.unshift(toDoList)
 
-    this.setState({
-      toDoLists: nextLists,
-      currentList: toDoList,
-    })
+    this.setState(
+      {
+        toDoLists: nextLists,
+        currentList: toDoList,
+      },
+      this.afterToDoListsChangeComplete
+    )
   }
 
   updateCurrentList = (newList) => {
-    this.setState({
-      todoLists: [...this.state.toDoLists],
-      // currentList: [...this.state.currentList],
-      // currentList: newList,
-      useVerboseFeedback: true,
-    })
+    this.setState(
+      {
+        todoLists: [...this.state.toDoLists],
+        // currentList: [...this.state.currentList],
+        // currentList: newList,
+        useVerboseFeedback: true,
+      },
+      this.afterToDoListsChangeComplete
+    )
     return newList
   }
 
@@ -125,18 +129,21 @@ class App extends Component {
 
     this.state.toDoLists.splice(indexOfList, 1)
 
-    this.setState({
-      toDoLists: [...this.state.toDoLists],
-      currentList: { items: [] },
-      // nextListId: highListId + 1,
-      // nextListItemId: highListItemId + 1,
-      useVerboseFeedback: true,
-    })
+    this.setState(
+      {
+        toDoLists: [...this.state.toDoLists],
+        currentList: { items: [] },
+        // nextListId: highListId + 1,
+        // nextListItemId: highListItemId + 1,
+        useVerboseFeedback: true,
+      },
+      this.afterToDoListsChangeComplete
+    )
   }
 
   makeNewToDoList = () => {
     let newToDoList = {
-      id: this.highListId,
+      id: this.state.nextListId,
       name: 'Untitled',
       items: [],
     }
@@ -163,14 +170,13 @@ class App extends Component {
   // THIS IS A CALLBACK FUNCTION FOR AFTER AN EDIT TO A LIST
   afterToDoListsChangeComplete = () => {
     console.log('App updated currentToDoList: ' + this.state.currentList)
-
+    // console.log(this.state.toDoLists)
     // WILL THIS WORK? @todo
     let toDoListsString = JSON.stringify(this.state.toDoLists)
-    localStorage.setItem('recent_work', toDoListsString)
+    localStorage.setItem('recentLists', toDoListsString)
   }
 
   updateDescription = (new_desc, id) => {
-    console.log(this.state.currentList.items)
     for (let i = 0; i < this.state.currentList.items.length; i++) {
       const element = this.state.currentList.items[i]
       if (element.id === id) {

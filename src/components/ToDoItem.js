@@ -24,6 +24,12 @@ class ToDoItem extends Component {
   }
 
   onDescriptionClick = (e) => {
+    let add_button = document.getElementById('add-list-button')
+    console.log(add_button)
+    add_button.style.cursor = 'not-allowed'
+    add_button.style.hover = 'disabled'
+    add_button.style.color = 'darkgray'
+
     let listItem = this.props.toDoListItem
     let parentDiv = e.target.parentElement
     let divChild = parentDiv.removeChild(parentDiv.firstChild)
@@ -46,6 +52,9 @@ class ToDoItem extends Component {
         tps.addTransaction(transaction)
       }
       inputElement.replaceWith(divChild)
+      add_button.style.cursor = 'pointer'
+      add_button.style.hover = 'enabled'
+      add_button.style.color = '#ffc819'
     })
   }
 
