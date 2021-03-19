@@ -13,12 +13,12 @@
   --swatch-text: #e9edf0; /* USED IN MOUSE-OVER SELECTION OF TEXT AND BORDERS */
   --swatch-text-accent: #19c8ff; /* USED IN MOUSE-OVER SELECTION OF TEXT AND BORDERS */
 
-  --font-primary: 'Consolas', sans-serif;
+  --font-primary: 'Consolas-700', sans-serif;
 }
 
 #root {
   background-color: var(--swatch-foundation);
-  font-family: var(--font-primary);
+  font-family: Consolas-400;
 }
 
 #navbar {
@@ -38,6 +38,7 @@
   border-bottom: dotted;
   font-size: 14pt;
   font-weight: bold;
+  width: 95%;
 }
 
 #todo-list-header-card {
@@ -72,7 +73,13 @@
 .list-item-card {
   border-bottom: solid;
   border-width: 1px;
-  font-weight: bold;
+  padding-left: 30px;
+  /* font-weight: bold; */
+}
+
+.list-item-card:hover {
+  background-color: #353a44;
+  transition: 0.1s ease-in-out;
 }
 
 .todo-list-button {
@@ -87,12 +94,13 @@
 
 .todo-button {
   cursor: pointer;
-  background-color: var(--swatch-complement);
+  /* background-color: var(--swatch-primary); */
   font-weight: bold;
+  padding: 5px;
 }
 
 .todo-button:hover {
-  background-color: var(--swatch-contrast);
+  background-color: lightgray;
 }
 
 #add-list-button {
@@ -116,6 +124,14 @@
 #delete-list-button,
 #close-list-button {
   text-align: center;
+  background-color: #40454e;
+  margin-left: 20px;
+}
+
+#add-item-button:hover,
+#delete-list-button:hover,
+#close-list-button:hover {
+  background-color: lightgray;
 }
 
 .modal-overlay {
@@ -217,4 +233,55 @@
 
 #redo-button:hover {
   background-color: lightgray;
+}
+
+.selected-list {
+  background-color: lightslategrey !important;
+}
+
+#task-col-header {
+  background-color: #40454e;
+  width: 25%;
+}
+
+#task-col-header:hover {
+  background-color: black;
+}
+
+#date-col-header {
+  background-color: #40454e;
+  width: 25%;
+}
+
+#date-col-header:hover {
+  background-color: black;
+}
+
+#status-col-header {
+  background-color: #40454e;
+  width: 25%;
+}
+
+#status-col-header:hover {
+  background-color: black;
+}
+
+#undo-button {
+  background-color: #40454e;
+}
+
+#redo-button {
+  background-color: #40454e;
+}
+
+.list-item-card-header {
+  /* padding-top: 20px; */
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 2px;
+}
+
+#list-controls-div {
+  /* margin-left: 194px; */
 }

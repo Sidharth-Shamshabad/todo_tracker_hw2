@@ -183,7 +183,7 @@ class App extends Component {
   makeNewToDoListItem = () => {
     let newToDoListItem = {
       description: 'No Description',
-      dueDate: 'No Date',
+      due_date: 'No Date',
       status: 'incomplete',
       id: this.state.nextListItemId,
     }
@@ -288,13 +288,14 @@ class App extends Component {
   render() {
     let items = this.state.currentList.items
     return (
-      <div id='root'>
+      <div id='root' className='main-root'>
         <Navbar />
         <LeftSidebar
           toDoLists={this.state.toDoLists}
           loadToDoListCallback={this.loadToDoList}
           addNewListCallback={this.addNewList}
           tps={this.tps}
+          currentList={this.state.currentList}
         />
         <Workspace
           toDoListItems={items}

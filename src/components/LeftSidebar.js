@@ -32,6 +32,7 @@ class LeftSidebar extends Component {
               toDoList={toDoList} // PASS THE LIST TO THE CHILDREN
               loadToDoListCallback={this.props.loadToDoListCallback}
               tps={this.props.tps}
+              currentList={this.props.currentList}
             /> // PASS THE CALLBACK TO THE CHILDREN
           ))}
         </div>

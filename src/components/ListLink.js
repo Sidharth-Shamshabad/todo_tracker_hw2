@@ -47,10 +47,17 @@ class ListLink extends Component {
 
   render() {
     // DISPLAY WHERE WE ARE
-
+    console.log(this.props.currentList.id)
+    console.log(this.props.toDoList.id)
+    let selectedColor = ''
+    if (this.props.currentList.id === this.props.toDoList.id) {
+      selectedColor = 'todo-list-button selected-list'
+    } else {
+      selectedColor = 'todo-list-button'
+    }
     return (
       <div
-        className='todo-list-button'
+        className={selectedColor}
         onClick={this.handleLoadList}
         onDoubleClickCapture={this.handleDoubleClick}
       >

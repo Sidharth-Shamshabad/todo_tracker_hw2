@@ -1,111 +1,262 @@
+* {
+  margin: 0;
+}
+
 #root {
-    position:absolute;
-    width:98%;
-    left:1%;
-    height:100%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #d9d6cc;
+}
+
+.main-root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 50px 95%;
+  grid-template-columns: 15% 85%;
+}
+
+body {
+  height: 100%;
+  margin: 0 !important;
+  background-color: #d9d6cc;
 }
 
 #navbar {
-    position:absolute;
-    height: 50px;
-    top:0%;
-    left:0%;
-    width: 100%;
-    height: 5%;
-    margin:auto;
-    padding-left: 10px;
+  position: absolute;
+  height: 50px;
+  /* width: 98.8%; */
+  width: 98.8%;
+  height: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
 }
 
 #title-div {
-    position: absolute;
-    top:7px;
+  position: absolute;
+  top: 7px;
 }
 
 #left-sidebar {
-    position:absolute;
-    height:94%;
-    width:13%;
-    top:5.5%;
-    left:0%;
-    padding-left: 15px;
+  position: absolute;
+  height: 100%;
+  width: 12.6%;
+  top: 5.5%;
+  left: 0%;
+  margin-left: 10px;
 }
 
 #workspace {
-    position:absolute;
-    height:94%;
-    width:85.5%;
-    top:5.5%;
-    left:13%;
-    padding-left: 15px;
-    padding-right: 25px;
-    grid-column: 2 span 1;
-    grid-row: 2 span 1;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  height: 100%;
+  width: 85.5%;
+  top: 5.5%;
+  left: 13%;
+  padding-left: 15px;
+  padding-right: 15px;
+  grid-column: 2 span 1;
+  grid-row: 2 span 1;
+  flex-direction: column;
+  margin-right: 10px;
+  /* margin-top: 10px; */
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 #left-sidebar-header {
-    padding-top:25px;
-    height:4%;
-    top:3%;
-    width: 80%;
-    display: grid;
-    grid-template-columns: 60% 40%;
-    white-space: nowrap;
+  padding-top: 26px;
+  top: 3%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  white-space: nowrap;
 }
 
 #todo-lists-list {
-    position:absolute;
-    text-align: center;
-    height:80%;
-    width:100%;
-    top: 8%;
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: thin;
+  overflow-x: hidden;
 }
 
 .todo-list-button {
-    padding-top:20px;
-    height: 60px;
-    width: 80%;
+  padding-top: 40px;
+  height: 60px;
+  width: 100%;
+}
+
+.list-input {
+  padding: 35px;
+  height: 25px;
+  width: 70%;
+  background-color: #353a44;
+  text-align: center;
+  color: white;
 }
 
 .todo-button {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 #left-sidebar-controls {
-    text-align: right;
+  text-align: right;
 }
 
 #todo-list-header-card {
-    padding-top:25px;
-    height:30px;
-    width: 98%;
+  /* padding-top: 43px;
+  height: 30px;
+  width: 98%; */
+  padding-left: 24px;
+  padding-bottom: 0%;
+  padding-top: 11px;
+  border-bottom: dotted;
+  position: relative;
+  min-height: 3.3%;
+  align-items: center;
+  padding-right: 25px;
 }
 
 #todo-list-items-div {
-    height:96%;
-    top:7%;
-    display: flex;
-    flex-direction: column;
+  /* height: 100%; */
+  top: 7%;
+  flex-direction: column;
 }
 
 .list-item-card {
-    padding-top:20px;
-    height: 45px;
-    display: flex;
-    flex-direction: row;
+  /* padding-top: 20px; */
+  /* height: 45px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* padding-bottom: 2px; */
+  height: 99px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  background-color: #40454e;
+  align-content: center;
 }
 
 .item-col {
-    width:25%;
+  /* height: 25px; */
+  background-color: none;
+}
+
+.task-col {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  margin: 0;
+  overflow: hidden;
+}
+
+.task-col:hover {
+  cursor: pointer;
+}
+
+.task-col-input {
+  width: 24.7%;
+  height: 100%;
+  padding: 0px;
+  background-color: #40454e;
+  outline: none;
+  color: white;
+  margin: 0%;
+}
+
+.due-date-col {
+  padding-left: 5px;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  margin: 0;
+}
+
+.due-date-col:hover {
+  cursor: pointer;
+}
+
+.due-date-col-input {
+  width: 25%;
+  height: 100%;
+  background-color: #40454e;
+}
+
+.status-col {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  margin: 0;
+}
+
+.status-incomplete {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  margin: 0;
+}
+
+.status-complete {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  margin: 0;
+}
+
+.status-col-select {
+  width: 25%;
+  height: 100%;
+  padding: 0px;
+  background-color: #40454e;
+  outline: none;
+  color: white;
+  margin: 0%;
 }
 
 .list-controls-col {
-    /*display: flex;
-    flex-direction: row; 
-    flex-wrap: nowrap;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-top: 5px;
+  padding-left: 85px;
 }
 
 .list-item-control {
-    width: 20%;
+  width: 20%;
+}
+
+#add-undo-redo-box {
+  padding-left: 60px;
+  /* text-align: right; */
+}
+
+.left-sidebar-header-text {
+  padding-left: 15px;
 }

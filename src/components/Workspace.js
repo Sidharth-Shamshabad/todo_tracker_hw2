@@ -65,7 +65,7 @@ class Workspace extends Component {
   render() {
     return (
       <div id='workspace'>
-        <div id='todo-list-header-card' className='list-item-card'>
+        <div id='todo-list-header-card' className='list-item-card-header'>
           <div id='task-col-header' className='item-col todo-button'>
             Task
           </div>

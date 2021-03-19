@@ -233,24 +233,29 @@ class ToDoItem extends Component {
         <div className='item-col test-4-col'></div>
         <div className='item-col list-controls-col'>
           <KeyboardArrowUp
-            className='list-item-control todo-button'
+            className='list-item-control todo-button arrowUp'
             onClick={this.onArrowUpClick}
             style={{
               color: upColorCheck,
               cursor: upCursorCheck,
+              marginLeft: '10px',
             }}
           />
           <KeyboardArrowDown
-            className='list-item-control todo-button'
+            className='list-item-control todo-button arrowDown'
             onClick={this.onArrowDownClick}
             style={{
               color: downColorCheck,
               cursor: downCursorCheck,
+              marginLeft: '20px',
             }}
           />
           <Close
-            className='list-item-control todo-button'
+            className='list-item-control todo-button close-button'
             onClick={this.onRemoveClick}
+            style={{
+              marginLeft: '20px',
+            }}
           />
           <div className='list-item-control'></div>
           <div className='list-item-control'></div>
