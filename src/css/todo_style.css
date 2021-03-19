@@ -300,6 +300,7 @@
 
 #todo-list-items-div {
   overflow: scroll;
+  scrollbar-width: thin;
 }
 
 .container-primary {

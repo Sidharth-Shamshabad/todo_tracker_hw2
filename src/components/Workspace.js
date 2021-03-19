@@ -13,9 +13,20 @@ class Workspace extends Component {
     super(props)
   }
 
-  // componentDidMount() {
-  //   document.addEventListener(())
-  // }
+  componentDidMount() {
+    document.addEventListener('keydown', this.undoOrRedo)
+  }
+
+  undoOrRedo = (e) => {
+    console.log(e)
+    if (e.key === 'y' && e.ctrlKey === true) {
+      console.log('y key pressed')
+      this.onRedo()
+    } else if (e.key === 'z' && e.ctrlKey === true) {
+      console.log('z key pressed')
+      this.onUndo()
+    }
+  }
 
   onDeleteButtonClick = (e) => {
     var modal_overlay = document.getElementById('modal-overlay')

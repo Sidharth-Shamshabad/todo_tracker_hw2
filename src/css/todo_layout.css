@@ -79,14 +79,12 @@ body {
 }
 
 #left-sidebar-header {
-  padding-top: 26px;
+  padding-top: 16px;
   top: 3%;
-  width: 80%;
-  grid-template-columns: 60% 40%;
-  white-space: nowrap;
-  display: 'flex';
-  flex-direction: 'row';
-  flexwrap: 'nowrap';
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #todo-lists-list {
@@ -120,7 +118,7 @@ body {
 }
 
 #left-sidebar-controls {
-  text-align: right;
+  /* text-align: right; */
 }
 
 #todo-list-header-card {
@@ -267,10 +265,12 @@ body {
 }
 
 #add-undo-redo-box {
-  padding-left: 60px;
+  /* padding-left: 60px; */
   /* text-align: right; */
+  position: relative;
+  /* margin-right: 1% !important; */
 }
 
 .left-sidebar-header-text {
-  padding-left: 15px;
+  padding-left: 5%;
 }
