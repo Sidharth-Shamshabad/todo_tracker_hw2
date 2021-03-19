@@ -288,27 +288,31 @@ class App extends Component {
   render() {
     let items = this.state.currentList.items
     return (
-      <div id='root' className='main-root'>
-        <Navbar />
-        <LeftSidebar
-          toDoLists={this.state.toDoLists}
-          loadToDoListCallback={this.loadToDoList}
-          addNewListCallback={this.addNewList}
-          tps={this.tps}
-          currentList={this.state.currentList}
-        />
-        <Workspace
-          toDoListItems={items}
-          removeCurrentList={this.removeCurrentList}
-          makeNewToDoListItem={this.makeNewToDoListItem}
-          updateCurrentList={this.updateCurrentList}
-          undo={this.undo}
-          redo={this.redo}
-          tps={this.tps}
-          app={this}
-          checkUndoRedo={this.checkUndoRedo}
-        />
-        <Modal removeCurrentList={this.removeCurrentList} />
+      <div id='root'>
+        <div className='content-primary'>
+          <Navbar />
+          <div className='content-secondary'>
+            <LeftSidebar
+              toDoLists={this.state.toDoLists}
+              loadToDoListCallback={this.loadToDoList}
+              addNewListCallback={this.addNewList}
+              tps={this.tps}
+              currentList={this.state.currentList}
+            />
+            <Workspace
+              toDoListItems={items}
+              removeCurrentList={this.removeCurrentList}
+              makeNewToDoListItem={this.makeNewToDoListItem}
+              updateCurrentList={this.updateCurrentList}
+              undo={this.undo}
+              redo={this.redo}
+              tps={this.tps}
+              app={this}
+              checkUndoRedo={this.checkUndoRedo}
+            />
+          </div>
+          <Modal removeCurrentList={this.removeCurrentList} />
+        </div>
       </div>
     )
   }

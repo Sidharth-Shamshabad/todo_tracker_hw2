@@ -1,10 +1,11 @@
-* {
-  margin: 0;
-}
+/* * {
+  margin: 0px !important;
+  padding: 0px !important;
+} */
 
 #root {
   position: absolute;
-  width: 100%;
+  width: 98.3%;
   height: 100%;
   background-color: #d9d6cc;
 }
@@ -27,13 +28,17 @@ body {
 #navbar {
   position: absolute;
   height: 50px;
-  /* width: 98.8%; */
   width: 98.8%;
   height: 40px;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 10px;
   padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 101.5%;
+  /* height: 5%;
+  margin: 0.5%; */
 }
 
 #title-div {
@@ -43,45 +48,54 @@ body {
 
 #left-sidebar {
   position: absolute;
-  height: 100%;
+  height: 92%;
   width: 12.6%;
-  top: 5.5%;
+  top: 52px;
   left: 0%;
   margin-left: 10px;
+  margin-top: 10px;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  overflow: scroll;
 }
 
 #workspace {
   position: absolute;
-  height: 100%;
+  height: 92%;
   width: 85.5%;
-  top: 5.5%;
-  left: 13%;
+  top: 52px;
+  left: 15%;
   padding-left: 15px;
-  padding-right: 15px;
+  padding-right: 25px;
   grid-column: 2 span 1;
   grid-row: 2 span 1;
   flex-direction: column;
   margin-right: 10px;
-  /* margin-top: 10px; */
-  overflow: auto;
+  overflow: scroll;
   overflow-x: hidden;
+  margin-top: 10px;
+  grid-column: 2 span 1;
+  grid-row: 2 span 1;
 }
 
 #left-sidebar-header {
   padding-top: 26px;
   top: 3%;
   width: 80%;
-  display: grid;
   grid-template-columns: 60% 40%;
   white-space: nowrap;
+  display: 'flex';
+  flex-direction: 'row';
+  flexwrap: 'nowrap';
 }
 
 #todo-lists-list {
   position: absolute;
   text-align: center;
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
-  overflow: auto;
+  overflow: scroll;
+  flex-direction: column;
   scrollbar-width: thin;
   overflow-x: hidden;
 }

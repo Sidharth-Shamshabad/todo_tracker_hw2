@@ -13,6 +13,10 @@ class Workspace extends Component {
     super(props)
   }
 
+  // componentDidMount() {
+  //   document.addEventListener(())
+  // }
+
   onDeleteButtonClick = (e) => {
     var modal_overlay = document.getElementById('modal-overlay')
     modal_overlay.style.display = 'block'
